@@ -107,35 +107,7 @@ void levelOrder(node* root) {
 // 	return n;
 // }
 
-node* levelOrderBuild(vector<int> v) {
-	queue<node*> q;
-	node* x = new node(v[0]);
-	int i = 0;
-	q.push(x);
-	while (!q.empty() && i < v.size()) {
-		node* front = q.front();
-		q.pop();
-		node* nleft = new node(v[2 * i + 1]);
-		node* nright = new node(v[2 * i + 2]);
-		if (nleft->data == -1) {
-			front->left = NULL;
-		} else {
-			front->left = nleft;
-			q.push(nleft);
-		}
-
-		if (nright->data == -1) {
-			front->right = NULL;
-		} else {
-			front->right = nright;
-			q.push(nright);
-		}
-		i++;
-	}
-	return x;
-}
-
-node* levelOrderBuild2() {
+node* levelOrderBuild() {
 	int d;
 	cin >> d;
 	node* root = new node(d);
@@ -159,23 +131,29 @@ node* levelOrderBuild2() {
 }
 
 
+int replaceSum(node* root) {
+	if (root == NULL) {
+		return 0;
+	}
+	if (root->left == NULL && root->right == NULL) {
+		return root->data;
+	}
+	int LS = replaceSum(root->left);
+	int RS = replaceSum(root->right);
+	int temp = root->data;
+	root->data = LS + RS;
+	return root->data + temp;
+}
 
 
 
 int main() {
-	node* root = new node(1);
-	root->left = new node(2);
-	root->right = new node(3);
-	root->left->left = new node(4);
-	root->left->right = new node(5);
-	root->right->left = new node(6);
-	root->right->right = new node(7);
+	node* root = levelOrderBuild();
+	levelOrder(root);
+	cout << endl << endl;
 
-	vector<int> v = {1, 2, 3, 4, 5, -1, 6, -1, -1, 7, -1, -1, -1, -1, -1};
-	node* root1 = levelOrderBuild2(v);
-	levelOrder(root1);
-
-
+	replaceSum(root);
+	levelOrder(root);
 	return 0;
 }
 
