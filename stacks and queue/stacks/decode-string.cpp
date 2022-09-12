@@ -10,7 +10,7 @@ public:
             else {
                 string str = "";
                 while (!st.empty() and st.top() != '[') {
-                    str = str + st.top();
+                    str = st.top() + str;
                     st.pop();
                 }
                 if (!st.empty()) {
@@ -18,16 +18,16 @@ public:
                     string k = "";
                     while (!st.empty() and isdigit(st.top()))
                     {
-                        k = k + st.top();
+                        k = st.top() + k;
                         st.pop();
                     }
-                    reverse(k.begin(), k.end());
+                    // reverse(k.begin(),k.end());
                     int a = stoi(k);
                     // string k="";
                     // k= st.top() + k;
                     // int a=stoi(k);
                     //st.pop();
-                    reverse(str.begin(), str.end());
+                    // reverse(str.begin(),str.end());
                     while (a--) {
                         for (char x : str) {
                             st.push(x);
@@ -38,10 +38,10 @@ public:
         }
         string m = "";
         while (!st.empty()) {
-            m = m + st.top();
+            m = st.top() + m;
             st.pop();
         }
-        reverse(m.begin(), m.end());
+        // reverse(m.begin(),m.end());
         return m;
     }
 };
