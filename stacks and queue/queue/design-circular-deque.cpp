@@ -10,8 +10,8 @@ public:
         vector<int> v(k, 0);
         buffer = v;
         k1 = k;
-        front = k - 1;
-        rear = 0;
+        front = 0;
+        rear = k - 1;
         cnt = 0;
     }
 
@@ -20,7 +20,7 @@ public:
             return false;
         }
         buffer[front] = value;
-        front = (front - 1 + k1) % k1;
+        front = (front + 1) % k1;
         ++cnt;
         return true;
     }
@@ -30,7 +30,7 @@ public:
             return false;
         }
         buffer[rear] = value;
-        rear = (rear + 1) % k1;
+        rear = (rear - 1 + k1) % k1;
         ++cnt;
         return true;
     }
@@ -39,7 +39,7 @@ public:
         if (cnt == 0) {
             return false;
         }
-        front = (front + 1) % k1;
+        front = (front - 1 + k1) % k1;
         --cnt;
         return true;
     }
@@ -48,7 +48,7 @@ public:
         if (cnt == 0) {
             return false;
         }
-        rear = (rear - 1 + k1) % k1;
+        rear = (rear + 1) % k1;
         --cnt;
         return true;
     }
@@ -57,14 +57,14 @@ public:
         if (cnt == 0) {
             return -1;
         }
-        return buffer[(front + 1) % k1];
+        return buffer[(front - 1 + k1) % k1];
     }
 
     int getRear() {
         if (cnt == 0) {
             return -1;
         }
-        return buffer[(rear - 1 + k1) % k1];
+        return buffer[(rear + 1) % k1];
     }
 
     bool isEmpty() {
