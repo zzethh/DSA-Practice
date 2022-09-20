@@ -4,11 +4,11 @@ public:
     stack<int> s;
     int product = 1;
     ProductOfNumbers() {
-        v.push_back(1);
+
     }
 
     void add(int num) {
-        int index = v.size() - 1;
+        int index = v.size();
         if (num == 0) {
             v.push_back(1);
             s.push(index);
@@ -23,9 +23,12 @@ public:
     int getProduct(int k) {
         int n = v.size();
         if (!s.empty()) {
-            if (k >= n - s.top() - 1) {
+            if (k >= n - s.top()) {
                 return 0;
             }
+        }
+        if (n == k) {
+            return v.back();
         }
         return v.back() / v[n - k - 1];
     }
