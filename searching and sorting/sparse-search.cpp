@@ -13,7 +13,7 @@ int sparseSearch(vector<string> v, string k) {
 				i--;
 				j++;
 			}
-			if (v[i] != "" and v[mid] > k) {
+			if (v[i] != "") {
 				mid = i;
 			}
 			else mid = j;
