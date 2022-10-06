@@ -16,9 +16,9 @@ int partition(vector<int> &a, int s, int e) {
 
 
 int QuickSort(vector<int> &a, int s, int e, int k) {
-	// if (s >= e) {
-	// 	return -1;
-	// }
+	if (s > e) {
+		return -1;
+	}
 	int p = partition(a, s, e);
 	if (p == k) {
 		return a[p];
@@ -34,7 +34,7 @@ int main() {
 	vector<int> v{0, 5, 2, 3, 1};
 	int s = 0;
 	int e = v.size() - 1;
-	cout << QuickSort(v, s, e, 4);
+	cout << QuickSort(v, s, e, 0);
 	// for (auto x : v) {
 	// 	cout << x << " ";
 	// }
