@@ -1,3 +1,6 @@
+
+//also called subarray sort
+
 class Solution {
 public:
     bool outofOrder(vector<int> arr, int i) {
