@@ -39,7 +39,7 @@ int minswaps(vector<int> v) {
 }
 
 int main() {
-	vector<int> arr = {10, 11, 5, 4, 3, 2, 1};
+	vector<int> arr = {5, 4, 3, 2, 1};
 	cout << minswaps(arr);
 	return 0;
 }
