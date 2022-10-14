@@ -3,24 +3,14 @@ using namespace std;
 
 
 void countingPath(int r, int c, string s) {
-	if (r == 1 ) {
-		for (int j = 0; j < c - 1; j++) {
-			s = s + 'R';
-		}
-		cout << s << " ";
+	if (r == 1 and c == 1) {
+		cout << s << endl;
 		return;
 	}
 
-	if (c == 1) {
-		for (int j = 0; j < r - 1; j++) {
-			s = s + 'D';
-		}
-		cout << s << " ";
-		return;
-	}
 
-	countingPath(r - 1, c, s + 'D');
-	countingPath(r, c - 1, s + 'R');
+	if (r > 1) countingPath(r - 1, c, s + 'D');
+	if (c > 1) countingPath(r, c - 1, s + 'R');
 }
 
 
