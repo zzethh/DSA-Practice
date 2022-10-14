@@ -21,9 +21,9 @@ vector<string> permutation2(string s, string output, int i) {
 	}
 
 	for (int j = 0; j <= output.length(); j++) {
-		vector<string> b[10];
-		b[i] = permutation2(s, output.substr(0, j) + s[i] + output.substr(j, output.length()), i + 1);
-		v.insert(v.end(), b[i].begin(), b[i].end());
+		vector<string> b;
+		b = permutation2(s, output.substr(0, j) + s[i] + output.substr(j, output.length()), i + 1);
+		v.insert(v.end(), b.begin(), b.end());
 	}
 	return v;
 }
