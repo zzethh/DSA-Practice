@@ -9,8 +9,10 @@ void phonekey(string s, string ans, int i) {
 
 	int digit = s[i] - '0';
 	for (int j = (digit - 1) * 3; j < digit * 3; j++) {
-		char c = 'a' + j;
-		phonekey(s, ans + c, i + 1);
+		if (j < 26) {
+			char c = 'a' + j;
+			phonekey(s, ans + c, i + 1);
+		}
 	}
 
 }
