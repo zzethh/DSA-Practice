@@ -35,13 +35,12 @@ int bottomUp(vector<int> coins, int target) {
 	vector<int> dp(target + 1, 0);
 	dp[0] = 0;
 	for (int i = 1; i <= target; i++) {
-		int ans = INT_MAX;
+		dp[i] = INT_MAX;
 		for (int j = 0; j < coins.size(); j++) {
 			if (i - coins[j] >= 0 and dp[i - coins[j]] != INT_MAX) {
-				ans = min(ans, dp[target - coins[j]]);
+				dp[i] = min(dp[i], dp[i - coins[j]] + 1);
 			}
 		}
-		dp[i] = ans + 1;
 	}
 	return dp[target];
 }
