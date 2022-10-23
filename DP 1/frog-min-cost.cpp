@@ -1,20 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// int minCost(vector<int> arr, int i) {
-// 	if (i == arr.size() - 1) {
-// 		return 0;
-// 	}
-// 	if (i >= arr.size()) {
-// 		return INT_MAX;
-// 	}
-// 	int ans = INT_MAX;
-// 	for (int jump = 1; jump <= arr[i]; jump++) {
-// 		ans = min(ans, minJumsps(arr, i + jump));
-// 	}
+int minCost(vector<int> arr, int i) {
+	if (i == arr.size() - 1) {
+		return 0;
+	}
 
-// 	return ans + 1;
-// }
+	if (i + 1 < arr.size() and i + 2 < arr.size()) return min(minCost(arr, i + 1) + abs(arr[i + 1] - arr[i]), minCost(arr, i + 2) + abs(arr[i + 2] - arr[i]));
+	if (i + 1 < arr.size()) return minCost(arr, i + 1) + abs(arr[i + 1] - arr[i]);
+	else return minCost(arr, i + 2) + abs(arr[i + 2] - arr[i]);
+
+}
 
 // int topDown(vector<int> arr, int i, int dp[]) {
 // 	if (i == arr.size() - 1) {
@@ -47,5 +43,6 @@ int main() {
 	int dp[100] = {0};
 	vector<int> arr = {10, 30, 40, 20};
 	cout << bottomUp(arr);
+	cout << minCost(arr, 0);
 	return 0;
 }
