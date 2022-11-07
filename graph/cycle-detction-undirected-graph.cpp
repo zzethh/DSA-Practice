@@ -107,9 +107,9 @@ public:
 				bool found = containsCycledfs(nbr, visited, node);
 				if (found) return true;
 			}
-		}
-		else if (nbr != parent) {
-			return true;
+			else if (nbr != parent) {
+				return true;
+			}
 		}
 
 		return false;
