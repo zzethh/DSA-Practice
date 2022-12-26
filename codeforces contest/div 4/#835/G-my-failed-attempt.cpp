@@ -42,10 +42,12 @@ int main() {
 		cin >> coin;
 		ll days;
 		cin >> days;
+		int sum = 0;
 		for (int i = 0; i < n; i++) {
 			ll x;
 			cin >> x;
 			qvalue.pb(x);
+			sum += x;
 		}
 		ll s = 1;
 		ll e = days;
@@ -57,6 +59,10 @@ int main() {
 		}
 		else if (days * qvalue[0] == coin) {
 			cout << "0";
+			continue;
+		}
+		else if (sum >= coin) {
+			cout << "Infinity";
 			continue;
 		}
 		while (s <= e) {
