@@ -49,3 +49,37 @@ signed main() {
 	return 0;
 
 }
+
+
+vector<string> Solution::reorderLogs(vector<string> &A) {
+	vector<pair<string, int>> alp;
+	vector<string> num;
+	set<pair<string, int>> se;
+	for (int i = 0; i < A.size(); i++) {
+		int j = 0;
+		char x = A[i][j];
+		string iden = "";
+		while (A[i][j] != '-') {
+			iden = iden + A[i][j];
+			j++;
+		}
+		j++;
+		string s = "";
+		s = s + A[i].substr(j, A[i].length() - iden.length() - 1) + '-' + iden;
+		if (isalpha(A[i][j])) {
+			se.insert({s, i});
+		}
+		else if (isdigit(A[i][j])) {
+			num.push_back(A[i]);
+		}
+	}
+	//sort(alp.begin(), alp.end());
+	vector<string> ans;
+	for (auto x : se) {
+		ans.push_back(A[x.second]);
+	}
+	for (auto x : num) {
+		ans.push_back(x);
+	}
+	return ans;
+}
