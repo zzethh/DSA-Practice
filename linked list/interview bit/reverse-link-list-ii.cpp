@@ -16,13 +16,13 @@ ListNode* Solution::reverseBetween(ListNode* A, int B, int C) {
 
     if (ptr == 1) return A;
 
-    if (ptr == 2) {
-        ListNode* head = A;
-        ListNode* nxt = head->next;
-        head->next = NULL;
-        nxt->next = head;
-        return A;
-    }
+    // if (ptr == 2) {
+    //     ListNode* head = A;
+    //     ListNode* nxt = head->next;
+    //     head->next = NULL;
+    //     nxt->next = head;
+    //     return A;
+    // }
 
     ListNode* temp = A;
     ListNode* ahead = NULL;
