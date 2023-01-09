@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+SELECT firstName,lastName,city,state FROM person LEFT OUTER JOIN address using(personId);
