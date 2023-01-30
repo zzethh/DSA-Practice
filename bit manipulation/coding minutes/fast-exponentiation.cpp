@@ -56,6 +56,19 @@ int fastExpo(int a, int n) {
 
 	return ans;
 }
+int fastExpo2(long long a, int n, int mod) {
+	int ans = 1;
+	while (n > 0) {
+		int last_bit = (n & 1);
+		if (last_bit) {
+			ans = (ans * a) % mod;
+		}
+		a = (a * a) % mod;
+		n = n >> 1;
+	}
+
+	return ans;
+}
 
 int main() {
 	int n = 15;
