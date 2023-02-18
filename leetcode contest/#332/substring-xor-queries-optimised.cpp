@@ -7,8 +7,7 @@ public:
             if (s[i] == '1') {
                 int v = 0;
                 for (int j = i; j < min(n, i + 30); j++) {
-                    v *= 2;
-                    if (s[j] == '1') ++v;
+                    v = (v << 1) + (s[j] - '0');
                     if (!m.count(v)) {
                         m[v] = {i, j};
                     }
