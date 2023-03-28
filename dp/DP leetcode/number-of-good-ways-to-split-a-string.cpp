@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int numSplits(string s) {
+        vector<int> left;
+        vector<int> right(s.length(), 0);
+        unordered_map<char, int> l;
+        unordered_map<char, int> r;
+        int cnt = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (l[s[i]] == 0) {
+                l[s[i]]++;
+                cnt++;
+            }
+            left.push_back(cnt);
+        }
+        cnt = 0;
+        for (int i = s.length() - 2; i >= 0; i--) {
+            if (r[s[i + 1]] == 0) {
+                r[s[i + 1]]++;
+                cnt++;
+            }
+            right[i] = cnt;
+        }
+
+        // for(auto x:left){
+        //     cout<<x<<" ";
+        // }
+        // cout<<endl;
+        // for(auto y:right){
+        //     cout<<y<<" ";
+        // }
+        int ans = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (left[i] == right[i]) {
+                ans++;
+            }
+        }
+        return ans;
+    }
+};
