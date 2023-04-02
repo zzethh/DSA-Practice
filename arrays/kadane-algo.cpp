@@ -20,6 +20,17 @@ pair<int, int> kadaneAlgo(vector<int> v) {
 	return maxSum;
 }
 
+int kadane(vector<int> &v) {
+	int sum = 0;
+	int maxi = INT_MIN;
+	for (auto it : v) {
+		sum += it;
+		maxi = max(sum, maxi);
+		if (sum < 0) sum = 0;
+	}
+	return maxi;
+}
+
 int main() {
 	vector<int> arr = {5, 2, 9, 1, 100};
 	cout << kadaneAlgo(arr);
