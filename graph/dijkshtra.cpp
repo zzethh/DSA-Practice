@@ -200,6 +200,28 @@ public:
 
 		return dist[dest];
 	}
+
+	void topodfs(int node, stack<int>&st, vector<int> &vis) {
+		vis[node] = 1;
+		for (auto nbr : l[node]) {
+			if (!vis[nbr]) {
+				topodfs(nbr, st, vis);
+			}
+		}
+		st.push(node);
+	}
+
+	void topo(vector<int>&top) {
+		stack<int> st;
+		vector<int> vis(v, 0);
+		for (int i = 0; i < v; i++) {
+			if (!vis[i]) topodfs(i, st, vis);
+		}
+		while (!st.empty()) {
+			top.push_back(st.top());
+			st.pop();
+		}
+	}
 };
 
 
