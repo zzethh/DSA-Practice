@@ -163,7 +163,7 @@ public:
 
 		return false;
 	}
-
+	//tc-e*logv;
 	int dijkshtra(int src, int dest) {
 		vector<int> dist(v, INT_MAX);
 		set<pair<int, int>> s;
@@ -201,6 +201,35 @@ public:
 		return dist[dest];
 	}
 
+	//dijkastra for negative weight
+	//for directed graph
+	//if given undirected-change it to directed
+	//tc-E*V;
+	vector<int> bellman_ford(vector<vector<int>> edges, int src) {
+		vector<int> dist(v, 1e8);
+		dist[src] = 0;
+		for (int i = 0; i < v - 1; i++) {
+			for (auto it : edges) {
+				int u = it[0];
+				int v = it[1];
+				int wt = it[2];
+				if (dist[u] != 1e8 and dist[u] + wt < dist[v]) {
+					dist[v] = dist[u] + wt;
+				}
+			}
+		}
+		//nth relaxation to check neg cycle
+		for (auto it : edges) {
+			int u = it[0];
+			int v = it[1];
+			int wt = it[2];
+			if (dist[u] != 1e8 and dist[u] + wt < dist[v]) {
+				return { -1};
+			}
+		}
+		return dist;
+	}
+
 	void topodfs(int node, stack<int>&st, vector<int> &vis) {
 		vis[node] = 1;
 		for (auto nbr : l[node]) {
@@ -220,6 +249,29 @@ public:
 		while (!st.empty()) {
 			top.push_back(st.top());
 			st.pop();
+		}
+	}
+	//multi source shortest paths
+	void floyd_marshall(vector<vector<int>> mat) {
+		int n = mat.size();
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (mat[i][j] == -1) {
+					mat[i][j] = 1e9;
+				}
+				if (i == j) mat[i][j] = 0;
+			}
+		}
+
+		for (int k = 0; k < n; k++) {
+			for (int i = 0; i < n; i++) {
+				mat[i][j] = min(mat[i][j], mat[i][k] + mat[k][j]);
+			}
+		}
+
+		//negative cycle
+		for (int i = 0; i < n; i++) {
+			if (mat[i][i] < 0) cout << "neg cycle presernt";
 		}
 	}
 };
