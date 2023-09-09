@@ -239,7 +239,7 @@ public:
 		}
 		st.push(node);
 	}
-
+	//directed acyclic graph
 	void topo(vector<int>&top) {
 		stack<int> st;
 		vector<int> vis(v, 0);
