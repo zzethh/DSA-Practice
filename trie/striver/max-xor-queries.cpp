@@ -57,6 +57,7 @@ vector<int> maxXorQueries(vector<int> &arr, vector<vector<int>> &queries) {
     int n = arr.size();
     int idx = 0;
     Trie t;
+    //O(q+n)
     for (int i = 0; i < q; i++) {
         int ai = oq[i][0];
         int xi = oq[i][1];
