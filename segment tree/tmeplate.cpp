@@ -16,6 +16,7 @@ public:
 	Tree(int n) {
 		seg.resize(4 * n + 1);
 	}
+	//O(n)
 	void build(int ind, int low, int high, vector<int> arr) {
 		if (low == high) {
 			seg[ind] = arr[low];
@@ -26,7 +27,7 @@ public:
 		build(2 * ind + 2, mid + 1, high, arr);
 		seg[ind] = min(seg[2 * ind + 1], seg[2 * ind + 2]);
 	}
-
+	//O(logn)
 	int query(int ind, int low, int high, int l, int r) {
 		//no overlap
 		if (r < low or high < l) return INT_MAX;
@@ -38,7 +39,7 @@ public:
 		int right = query(2 * ind + 2, mid + 1, high, l, r);
 		return min(left, right);
 	}
-
+	//O(logn)
 	void update(int ind, int low, int high, int i, int val) {
 		if (low == high) {
 			seg[ind] = val;
